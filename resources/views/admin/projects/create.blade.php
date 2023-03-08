@@ -39,6 +39,15 @@
                             </div>
                         @enderror
                     </div>
+                    <div class="form-group w-100">
+                        <label for="">Immagine di copertina</label>
+                        <input type="file" id="cover_image" name="cover_image" class="form-control @error('cover_image')is-invalid @enderror" placeholder="Inserisci il nome del progetto ...">
+                        @error('cover_image')
+                            <div class="text-danger">
+                                <p>{{ $message }}</p>
+                            </div>
+                        @enderror
+                    </div>
                     <div class="d-flex flex-column flex-grow">
                         <label for="">Categorie</label>
                         <select class="form-select w-100" name="category_id" id="category_id">

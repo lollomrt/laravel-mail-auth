@@ -28,7 +28,8 @@ class UpdateProjectRequest extends FormRequest
             'title' => ['required', Rule::unique('projects')->ignore($this->project), 'max:150'],
             'content' => ['nullable'],
             'category_id' => ['nullable'],
-            'technology_id' => ['nullable']
+            'technology_id' => ['nullable'],
+            'cover_image' => ['nullable', 'image']
         ];
     }
 
@@ -41,7 +42,8 @@ class UpdateProjectRequest extends FormRequest
     {
         return [
             'title.required' => 'Il titolo è obbligatorio',
-            'title.max' => 'Il titolo non piò superare :max parole'
+            'title.max' => 'Il titolo non piò superare :max parole',
+            'cover_image.image' => 'Il file inserito non è un\'immagine'
         ];
     }
 }

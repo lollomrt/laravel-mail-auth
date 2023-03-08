@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Project;
 use App\Models\Category;
@@ -52,6 +53,12 @@ class ProjectController extends Controller
         $slug = Project::generateSlug($request->title);
         $form_data['slug'] = $slug;
         $newProject = new Project();
+
+        if($request->has('cover_image')){
+            $path = Storage::disk('public')->put('project_images', $request->cover_image);
+            $form_data['cover_image'] = $path;
+        }
+
         $newProject->fill($form_data);
         
         $newProject -> save();
@@ -59,6 +66,7 @@ class ProjectController extends Controller
         if($request->has('technologies')){
             $newProject->technologies()->attach($request->technologies);
         }
+
 
         return redirect()->route('admin.projects.index')->with('message', 'Il progetto è stato creato con successo!');
     }
@@ -100,6 +108,13 @@ class ProjectController extends Controller
         $form_data = $request->validated();
         $slug = Project::generateSlug($request->title);
         $form_data['slug'] = $slug;
+        if($request->has('cover_image')){
+            if($project->cover_image){
+                Storage::delete($project->cover_image);
+            }
+            $path = Storage::disk('public')->put('project_images', $request->cover_image);
+            $form_data['cover_image'] = $path;
+        }
         $project->update($form_data);
 
         if($request->has('technologies')){

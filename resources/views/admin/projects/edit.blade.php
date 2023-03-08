@@ -2,14 +2,19 @@
 @section('content')
 <div class="container-fluid">
     <div class="container-fluid">
-        <div class="row">
-            <div class="col">
-                <div class="container bg-light my-3 py-3 d-flex justify-content-between align-items-center">
+        <div class="row my-3 align-items-center">
+            <div class="col-4">
+                <div class="container">
+                    <img class="w-100" src="{{ asset('storage/'.$project->cover_image) }}" alt="{{ $project->title }}">
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="container flex-column py-3 d-flex justify-content-between">
                     <div class="d-flex align-items-center gap-2">
-                        <i class="fa-solid fa-pencil h1"></i>
-                        <h1 class="text-uppercase">Modifica progetto</h1>
+                        
+                        <h1 class="text-uppercase"><i class="fa-solid fa-pencil"></i>Modifica progetto</h1>
                     </div>
-                    <a class="btn btn-dark" href="{{ route('admin.projects.index') }}"><i class="fa-solid me-2 fa-reply-all"></i>Torna ai progetti</a>
+                    <a class="btn btn-dark w-25" href="{{ route('admin.projects.index') }}"><i class="fa-solid me-2 fa-reply-all"></i>Torna ai progetti</a>
                 </div>
             </div>
         </div>
@@ -28,13 +33,22 @@
                     </div>
                     @endif                                 
                 </div>
-                <form action="{{ route('admin.projects.update', $project->slug)}}" method="POST" class="w-100 d-flex gap-3 flex-wrap">
+                <form action="{{ route('admin.projects.update', $project->slug)}}" enctype="multipart/form-data" method="POST" class="w-100 d-flex gap-3 flex-wrap">
                     @csrf
                     @method('PUT')
                     <div class="form-group w-75">
                         <label for="">Title</label>
                         <input type="text" name="title" class="form-control" value="{{ old('title') ?? $project->title}}" placeholder="Inserisci il nome del progetto ...">
                         @error('title')
+                            <div class="text-danger">
+                                <p>{{ $message }}</p>
+                            </div>
+                        @enderror
+                    </div>
+                    <div class="form-group w-100">
+                        <label for="">Immagine di copertina</label>
+                        <input type="file" id="cover_image" name="cover_image" class="form-control @error('cover_image')is-invalid @enderror" placeholder="Inserisci il nome del progetto ...">
+                        @error('cover_image')
                             <div class="text-danger">
                                 <p>{{ $message }}</p>
                             </div>

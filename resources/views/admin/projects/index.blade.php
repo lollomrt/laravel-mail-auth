@@ -26,6 +26,7 @@
                         <th scope="col">id</th>
                         <th scope="col">title</th>
                         <th scope="col">slug</th>
+                        <td scope="col">Copertina</td>
                         <th scope="col">content</th>
                         <th scope="col">category</th>
                         <th scope="col">technologies</th>
@@ -38,6 +39,13 @@
                                 <th scope="row">{{ $project->id }}</th>
                                 <td>{{ $project->title }}</td>
                                 <td>{{ $project->slug }}</td>
+                                <td>
+                                    @if()
+                                        <img class="w-100" src="{{ asset('storage/'.$project->cover_image) }}" alt="">
+                                    @else 
+
+                                    @endif
+                                </td>
                                 <td>{{ $project->content }}</td>
                                 <td>{{ $project->category ? $project->category->title : 'Non disponibile' }}</td>
                                 <td>

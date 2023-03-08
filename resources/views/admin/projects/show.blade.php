@@ -1,9 +1,14 @@
 @extends('layouts.admin')
 @section('content')
     <div class="container-fluid">
-        <div class="row">
-            <div class="col">
-                <div class="container bg-light my-3 py-3 d-flex justify-content-between align-items-center">
+        <div class="row my-3 align-items-center">
+            <div class="col-4">
+                <div class="container">
+                    <img class="w-100" src="{{ asset('storage/'.$project->cover_image) }}" alt="{{ $project->title }}">
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="container py-3 d-flex flex-column justify-content-between">
                     <h2 class="text-uppercase">{{ $project->title }}</h2>
                     <div>
                         <a title="Modifica" class="btn btn-square btn-sm py-2 btn-warning" href="{{ route('admin.projects.edit', $project->slug) }}"><i class="fa-solid fa-pencil"></i></a>
