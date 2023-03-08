@@ -28,7 +28,7 @@
                     </div>
                     @endif                                 
                 </div>
-                <form action="{{ route('admin.projects.store')}}" method="POST" class="w-100 d-flex gap-3 flex-wrap">
+                <form action="{{ route('admin.projects.store')}}" enctype="multipart/form-data" method="POST" class="w-100 d-flex gap-3 flex-wrap">
                     @csrf
                     <div class="form-group w-100">
                         <label for="">Titolo</label>
