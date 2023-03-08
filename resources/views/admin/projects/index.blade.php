@@ -39,13 +39,7 @@
                                 <th scope="row">{{ $project->id }}</th>
                                 <td>{{ $project->title }}</td>
                                 <td>{{ $project->slug }}</td>
-                                <td>
-                                    @if()
-                                        <img class="w-100" src="{{ asset('storage/'.$project->cover_image) }}" alt="">
-                                    @else 
-
-                                    @endif
-                                </td>
+                                <td><img class="w-100" src="{{ asset('storage/'.$project->cover_image) }}" alt=""></td>
                                 <td>{{ $project->content }}</td>
                                 <td>{{ $project->category ? $project->category->title : 'Non disponibile' }}</td>
                                 <td>
