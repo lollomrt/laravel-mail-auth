@@ -26,7 +26,7 @@
                         <th scope="col">id</th>
                         <th scope="col">title</th>
                         <th scope="col">slug</th>
-                        <td scope="col">Copertina</td>
+                        <th scope="col">Copertina</th>
                         <th scope="col">content</th>
                         <th scope="col">category</th>
                         <th scope="col">technologies</th>

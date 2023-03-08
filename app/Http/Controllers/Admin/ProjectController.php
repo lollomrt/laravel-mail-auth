@@ -5,9 +5,12 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use App\Models\Project;
 use App\Models\Category;
 use App\Models\Technology;
+use App\Mail\NewContact;
+use App\Models\Lead;
 // use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
@@ -67,6 +70,14 @@ class ProjectController extends Controller
             $newProject->technologies()->attach($request->technologies);
         }
 
+        $newLead = new Lead();
+        $newLead->title = $form_data['title'];
+        $newLead->content = $form_data['content'];
+        $newLead->slug = $form_data['slug'];
+
+        $newLead->save();
+
+        Mail::to('info@portfolio.com')->send(new NewContact($newLead));
 
         return redirect()->route('admin.projects.index')->with('message', 'Il progetto è stato creato con successo!');
     }

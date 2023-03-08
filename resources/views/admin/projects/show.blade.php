@@ -8,7 +8,7 @@
                 </div>
             </div>
             <div class="col-8">
-                <div class="container py-3 d-flex flex-column justify-content-between">
+                <div class="container h-100 py-3 d-flex flex-column justify-content-between">
                     <h2 class="text-uppercase">{{ $project->title }}</h2>
                     <div>
                         <a title="Modifica" class="btn btn-square btn-sm py-2 btn-warning" href="{{ route('admin.projects.edit', $project->slug) }}"><i class="fa-solid fa-pencil"></i></a>
